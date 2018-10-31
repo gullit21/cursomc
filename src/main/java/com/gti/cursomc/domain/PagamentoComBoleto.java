@@ -5,35 +5,35 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.gti.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
-
 	private static final long serialVersionUID = 1L;
 
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private Date dataVecimento;
-	
+	private Date dataVencimento;
+
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataPagamento;
-	
+
 	public PagamentoComBoleto() {
 	}
 
-	public PagamentoComBoleto(Integer id, EstadoPagamento estadoPagamento, Pedido pedido, Date dataVencimento, Date dataPagamento) {
-		super(id, estadoPagamento, pedido);
-		
+	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
+		super(id, estado, pedido);
 		this.dataPagamento = dataPagamento;
-		this.dataVecimento = dataVencimento;
+		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDataVecimento() {
-		return dataVecimento;
+	public Date getDataVencimento() {
+		return dataVencimento;
 	}
 
-	public void setDataVecimento(Date dataVecimento) {
-		this.dataVecimento = dataVecimento;
+	public void setDataVencimento(Date dataVencimento) {
+		this.dataVencimento = dataVencimento;
 	}
 
 	public Date getDataPagamento() {
@@ -42,6 +42,6 @@ public class PagamentoComBoleto extends Pagamento {
 
 	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
-	}
-
+	}	
+	
 }

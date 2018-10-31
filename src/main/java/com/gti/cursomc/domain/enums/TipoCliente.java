@@ -17,21 +17,23 @@ public enum TipoCliente {
 		return cod;
 	}
 	
-	public String getDescricao() {
+	public String getDescricao () {
 		return descricao;
 	}
 	
 	public static TipoCliente toEnum(Integer cod) {
-		if(cod == null) {
+		
+		if (cod == null) {
 			return null;
 		}
 		
-		for(TipoCliente tipo : TipoCliente.values()) {
-			if(cod.equals(tipo.getCod())) {
-				return tipo;
+		for (TipoCliente x : TipoCliente.values()) {
+			if (cod.equals(x.getCod())) {
+				return x;
 			}
 		}
 		
 		throw new IllegalArgumentException("Id inválido: " + cod);
 	}
+	
 }

@@ -24,11 +24,10 @@ public class CategoriaService {
 
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		// return categoria.orElse(null);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
-
+	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
@@ -37,17 +36,16 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		Categoria newObj = find(obj.getId());
 		updateData(newObj, obj);
-		
-		return repo.save(obj);
+		return repo.save(newObj);
 	}
-
+	
 	public void delete(Integer id) {
 		find(id);
-		
 		try {
 			repo.deleteById(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Nao eh possivel excluir uma categoria que possui produtos");
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
 	}
 	
@@ -57,7 +55,6 @@ public class CategoriaService {
 	
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		
 		return repo.findAll(pageRequest);
 	}
 	

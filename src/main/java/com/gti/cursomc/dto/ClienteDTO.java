@@ -12,7 +12,6 @@ import com.gti.cursomc.services.validation.ClienteUpdate;
 
 @ClienteUpdate
 public class ClienteDTO implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -27,13 +26,13 @@ public class ClienteDTO implements Serializable {
 	
 	public ClienteDTO() {
 	}
-	
-	public ClienteDTO(Cliente cliente) {
-		this.id = cliente.getId();
-		this.nome = cliente.getNome();
-		this.email = cliente.getEmail();
-	}
 
+	public ClienteDTO(Cliente obj) {
+		id = obj.getId();
+		nome = obj.getNome();
+		email = obj.getEmail();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -57,5 +56,4 @@ public class ClienteDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 }

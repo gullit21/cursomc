@@ -26,15 +26,13 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
 	private String nome;
 	
 	@Column(unique=true)
 	private String email;
 	private String cpfOuCnpj;
-	
 	private Integer tipo;
-
+	
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
@@ -45,9 +43,10 @@ public class Cliente implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
-
-	public Cliente() {}
 	
+	public Cliente() {
+	}
+
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
 		super();
 		this.id = id;
@@ -90,7 +89,7 @@ public class Cliente implements Serializable {
 	}
 
 	public TipoCliente getTipo() {
-		return TipoCliente.toEnum(this.tipo);
+		return TipoCliente.toEnum(tipo);
 	}
 
 	public void setTipo(TipoCliente tipo) {
@@ -144,6 +143,6 @@ public class Cliente implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
+	}	
+
 }
