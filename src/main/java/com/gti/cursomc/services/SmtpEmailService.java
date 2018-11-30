@@ -22,18 +22,14 @@ public class SmtpEmailService extends AbstractEmailService {
 	@Override
 	public void sendEmail(SimpleMailMessage msg) {
 		LOG.info("Enviando email...");
-
 		mailSender.send(msg);
-
 		LOG.info("Email enviado");
 	}
 
 	@Override
 	public void sendHtmlEmail(MimeMessage msg) {
 		LOG.info("Enviando email HTML...");
-
 		javaMailSender.send(msg);
-
 		LOG.info("Email enviado");
 	}
 
